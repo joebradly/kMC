@@ -394,8 +394,6 @@ private:
 
     static field<Boundary*> m_boundaries;
 
-    static field<const Setting*> m_boundaryConfigs;
-
     static umat m_boundaryTypes;
 
 
@@ -422,6 +420,8 @@ private:
 
 
     static set<Site*> m_affectedSites;
+
+    static set<Reaction*> m_newReactions;
 
     static KMCSolver* m_solver;
 

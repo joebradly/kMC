@@ -289,8 +289,6 @@ void Site::spawnAsFixedCrystal()
 
     m_isFixedCrystalSeed = true;
 
-    clearAllReactions();
-
     spawnAsCrystal();
 
     setNewParticleState(ParticleStates::fixedCrystal);
@@ -308,7 +306,7 @@ void Site::deactivateFixedCrystal()
 
     deactivate();
 
-    initializeDiffusionReactions();
+//    initializeDiffusionReactions();
 
 }
 
@@ -484,7 +482,7 @@ void Site::initializeDiffusionReactions()
 
 
     KMCDebugger_Assert(m_reactions.size(), ==, 0, "Sitereactions are already set", info());
-    KMCDebugger_AssertBool(!isActive() || isFixedCrystalSeed(), "Non FixedCrystal Site should not be active when reactions are initialized.", info());
+//    KMCDebugger_AssertBool(!isActive() || isFixedCrystalSeed(), "Non FixedCrystal Site should not be active when reactions are initialized.", info());
 
     if (isFixedCrystalSeed())
     {
@@ -818,6 +816,7 @@ void Site::flipActive()
 
 
     m_active = true;
+    initializeDiffusionReactions();
 
 
     m_affectedSites.insert(this);
@@ -836,7 +835,7 @@ void Site::flipDeactive()
 
 
     m_active = false;
-
+    clearAllReactions();
 
     informNeighborhoodOnChange(-1);
 
@@ -1066,7 +1065,7 @@ void Site::reset()
     {
         m_isFixedCrystalSeed = false;
 
-        initializeDiffusionReactions();
+//        initializeDiffusionReactions();
     }
 
     m_cannotCrystallize = false;
@@ -1216,7 +1215,6 @@ void Site::clearAll()
     clearAffectedSites();
     clearBoundaries();
 
-    m_boundaryConfigs.clear();
     m_boundaryTypes.clear();
 
 }
@@ -1241,7 +1239,7 @@ void Site::resetBoundariesTo(const umat &boundaryMatrix)
 
     Site::initializeBoundaries();
 
-    m_solver->initializeDiffusionReactions();
+//    m_solver->initializeDiffusionReactions();
 
 
 }
@@ -1680,8 +1678,6 @@ set<Site*> Site::m_affectedSites;
 
 
 field<Boundary*> Site::m_boundaries;
-
-field<const Setting*> Site::m_boundaryConfigs;
 
 umat Site::m_boundaryTypes;
 

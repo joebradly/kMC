@@ -660,7 +660,7 @@ void KMCSolver::setBoxSize(const uvec3 boxSize, bool check, bool keepSystem)
 
     Site::initializeBoundaries();
 
-    initializeDiffusionReactions();
+//    initializeDiffusionReactions();
 
 }
 
